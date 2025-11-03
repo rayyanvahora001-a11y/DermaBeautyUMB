@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UMB DermaBeauty Club ✨ — Resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--lav:#E9D8FF;--lav-2:#F6ECFF;--text:#40385a;--card:#FFFFFFEE;--line:#00000012;--shadow:0 8px 30px rgba(124,58,237,.18);--radius:22px}
+    *{box-sizing:border-box} html:focus-within{scroll-behavior:smooth}
+    html,body{margin:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:
+      radial-gradient(1200px 600px at 0% -10%, #ffe4f5 0%, transparent 60%),
+      radial-gradient(1200px 700px at 100% 0%, #e6f8ff 0%, transparent 60%),
+      linear-gradient(180deg, var(--lav), var(--lav-2));color:var(--text)}
+    a{color:#6D28D9;text-decoration:none}.container{width:min(1100px,92%);margin-inline:auto}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.75);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}.brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow)}
+    .brand .t1{font-family:"Dancing Script",cursive;font-size:28px;color:#5B21B6}
+    .nav ul{display:flex;gap:8px;list-style:none;margin:0;padding:0}.nav a{padding:8px 14px;border-radius:999px;color:#5a5176}
+    .nav a[aria-current="page"], .nav a:hover{background:#f4edff;color:#3f2e7a}
+    main{padding:60px 0}
+    h1{font-size:clamp(30px,4vw,44px);color:#3b2e66;margin:0 0 10px}
+    .resources{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:14px}
+    .resource{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:var(--shadow)}
+    .btn{padding:10px 14px;border-radius:16px;border:1px solid var(--line);background:#fff;color:#3b2e66;font-weight:700;box-shadow:var(--shadow);display:inline-block;margin-top:10px}
+    footer{padding:28px 0;color:#6b6387;border-top:1px solid var(--line)}
+    @media (max-width:960px){.resources{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="UMB DermaBeauty Club logo" onerror="this.style.display='none'">
+        <div class="t1">UMB DermaBeauty Club</div>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="resources.html" aria-current="page">Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Resources</h1>
+    <p style="color:#6b6387;margin:6px 0 14px">Study + career links for skin lovers 💗</p>
+
+    <div id="list" class="resources"></div>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <p>© <span id="year"></span> UMB DermaBeauty Club · IT240</p>
+      <p>Happy learning! 📚</p>
+    </div>
+  </footer>
+
+  <script>
+    const resources = [
+      {title:'American Academy of Dermatology (AAD)', url:'https://www.aad.org', desc:'Guidelines, patient education, skin cancer awareness.'},
+      {title:'DermNet', url:'https://dermnetnz.org', desc:'Clinical images and concise condition overviews.'},
+      {title:'NIH — Skin Conditions', url:'https://www.nih.gov', desc:'Evidence-based info on common dermatology topics.'},
+      {title:'Shadowing Etiquette 101 (PDF)', url:'#', desc:'Club-made handout on finding opportunities respectfully.'}
+    ];
+    const list = document.getElementById('list');
+    list.innerHTML = resources.map(r=>`
+      <article class="resource">
+        <h3 style="margin:0 0 8px;color:#5B21B6">${r.title}</h3>
+        <p style="color:#6b6387;margin:0 0 8px">${r.desc}</p>
+        <a class="btn" target="_blank" rel="noopener" href="${r.url}">Open</a>
+      </article>
+    `).join('');
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

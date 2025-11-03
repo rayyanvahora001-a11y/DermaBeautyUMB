@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UMB DermaBeauty Club ✨ — Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--lav:#E9D8FF;--lav-2:#F6ECFF;--text:#40385a;--card:#FFFFFFEE;--line:#00000012;--shadow:0 8px 30px rgba(124,58,237,.18);--radius:22px}
+    *{box-sizing:border-box} html:focus-within{scroll-behavior:smooth}
+    html,body{margin:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:
+      radial-gradient(1200px 600px at 0% -10%, #ffe4f5 0%, transparent 60%),
+      radial-gradient(1200px 700px at 100% 0%, #e6f8ff 0%, transparent 60%),
+      linear-gradient(180deg, var(--lav), var(--lav-2));color:var(--text)}
+    a{color:#6D28D9;text-decoration:none}.container{width:min(1100px,92%);margin-inline:auto}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.75);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}.brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow)}
+    .brand .t1{font-family:"Dancing Script",cursive;font-size:28px;color:#5B21B6}
+    .nav ul{display:flex;gap:8px;list-style:none;margin:0;padding:0}.nav a{padding:8px 14px;border-radius:999px;color:#5a5176}
+    .nav a[aria-current="page"], .nav a:hover{background:#f4edff;color:#3f2e7a}
+    main{padding:60px 0}
+    h1{font-size:clamp(30px,4vw,44px);color:#3b2e66;margin:0 0 10px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:12px;margin-top:14px}
+    .g{border-radius:16px;min-height:130px;border:1px solid var(--line);position:relative;cursor:pointer;overflow:hidden;box-shadow:var(--shadow)}
+    .g img{width:100%;height:100%;object-fit:cover}
+    .g span{position:absolute;inset:auto 8px 8px 8px;background:#ffffffd6;padding:6px 10px;border-radius:12px;border:1px solid var(--line);font-size:12px;color:#6b5aa3}
+    .g.span-6{grid-column:span 6}.g.span-4{grid-column:span 4}.g.span-3{grid-column:span 3}
+    dialog#lightbox{border:none;border-radius:20px;padding:0;background:#fff;color:#3b2e66;max-width:min(92vw,900px);box-shadow:var(--shadow)}
+    dialog::backdrop{background:rgba(0,0,0,.45)} .lightbox-head{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)} .lightbox-body{padding:10px}
+    footer{padding:28px 0;color:#6b6387;border-top:1px solid var(--line)}
+    @media (max-width:640px){.g.span-6,.g.span-4,.g.span-3{grid-column:span 12}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="UMB DermaBeauty Club logo" onerror="this.style.display='none'">
+        <div class="t1">UMB DermaBeauty Club</div>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html" aria-current="page">Gallery</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Gallery</h1>
+    <p style="color:#6b6387;margin:6px 0 14px">Click a photo to open the lightbox. Replace placeholders with your real pics later.</p>
+
+    <div id="grid" class="grid"></div>
+
+    <dialog id="lightbox" aria-label="Image preview">
+      <div class="lightbox-head">
+        <strong id="lb-title">Preview</strong>
+        <button id="lb-close" style="padding:8px 12px;border-radius:12px;border:1px solid #ddd;background:#fff;cursor:pointer">Close</button>
+      </div>
+      <div class="lightbox-body">
+        <img id="lb-img" alt="Preview image" />
+        <p id="lb-cap" style="color:#6b6387;margin:8px 0 12px"></p>
+      </div>
+    </dialog>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <p>© <span id="year"></span> UMB DermaBeauty Club · IT240</p>
+      <p>Smile for the lightbox 📸</p>
+    </div>
+  </footer>
+
+  <script>
+    const gallery = [
+      {src:'https://picsum.photos/seed/derm1/1000/700', alt:'Sunscreen demo', cap:'Workshop: Sunscreen demo'},
+      {src:'https://picsum.photos/seed/derm2/1000/700', alt:'Club fair table', cap:'Club fair booth'},
+      {src:'https://picsum.photos/seed/derm3/1000/700', alt:'Guest lecture', cap:'Guest lecture'},
+      {src:'https://picsum.photos/seed/derm4/1000/700', alt:'Acne routine lab', cap:'Hands-on acne lab'},
+      {src:'https://picsum.photos/seed/derm5/1000/700', alt:'Journal club', cap:'Journal club'},
+      {src:'https://picsum.photos/seed/derm6/1000/700', alt:'Outreach', cap:'Community outreach'}
+    ];
+    const grid = document.getElementById('grid');
+    function render(){
+      grid.innerHTML = '';
+      gallery.forEach((g,i)=>{
+        const tile = document.createElement('figure');
+        tile.className = 'g ' + (i%3===0? 'span-6':'span-3');
+        tile.innerHTML = `<img src="${g.src}" alt="${g.alt}"><span>${g.cap}</span>`;
+        tile.addEventListener('click', ()=>open(g));
+        grid.appendChild(tile);
+      });
+    }
+    const lb = document.getElementById('lightbox'); const img = document.getElementById('lb-img');
+    const cap = document.getElementById('lb-cap'); const title = document.getElementById('lb-title');
+    function open(g){ img.src=g.src; img.alt=g.alt; cap.textContent=g.cap; title.textContent='Image Preview'; lb.showModal(); }
+    document.getElementById('lb-close').addEventListener('click', ()=>lb.close());
+    lb.addEventListener('click', e=>{ if(e.target===lb) lb.close(); });
+    render(); document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

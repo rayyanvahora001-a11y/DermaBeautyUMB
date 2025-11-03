@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UMB DermaBeauty Club ✨ — Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* same theme as index */
+    :root{--lav:#E9D8FF;--lav-2:#F6ECFF;--rose:#FFD6EA;--mint:#CFF5EA;--violet:#A78BFA;--plum:#7C3AED;--text:#40385a;--card:#FFFFFFEE;--line:#00000012;--shadow:0 8px 30px rgba(124,58,237,.18);--radius:22px}
+    *{box-sizing:border-box} html:focus-within{scroll-behavior:smooth}
+    html,body{margin:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:
+      radial-gradient(1200px 600px at 0% -10%, #ffe4f5 0%, transparent 60%),
+      radial-gradient(1200px 700px at 100% 0%, #e6f8ff 0%, transparent 60%),
+      linear-gradient(180deg, var(--lav), var(--lav-2));color:var(--text)}
+    a{color:#6D28D9;text-decoration:none}.container{width:min(1100px,92%);margin-inline:auto}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.75);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}.brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow)}
+    .brand .t1{font-family:"Dancing Script",cursive;font-size:28px;color:#5B21B6}
+    .nav ul{display:flex;gap:8px;list-style:none;margin:0;padding:0}.nav a{padding:8px 14px;border-radius:999px;color:#5a5176}
+    .nav a[aria-current="page"], .nav a:hover{background:#f4edff;color:#3f2e7a}
+    main{padding:60px 0}
+    h1{font-size:clamp(30px,4vw,44px);color:#3b2e66;margin:0 0 6px}
+    p.lead{color:#6b6387}
+    .controls{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+    .btn{padding:10px 14px;border-radius:16px;border:1px solid var(--line);background:#fff;color:#3b2e66;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
+    .events{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .event{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--shadow)}
+    .event time{font-size:12px;color:#8B5CF6}.event h4{margin:8px 0 4px;color:#3b2e66}
+    .badge{display:inline-flex;gap:6px;align-items:center;padding:4px 8px;border-radius:999px;border:1px solid var(--line);background:#faf7ff;color:#6b5aa3;font-size:12px}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+    label{display:block;margin:8px 0 4px}
+    input,select,textarea{width:100%;padding:12px;border-radius:14px;border:1px solid #e8e0ff;background:#fff;color:#3b2e66}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}
+    .list{display:grid;gap:10px}
+    footer{padding:28px 0;color:#6b6387;border-top:1px solid var(--line)}
+    @media (max-width:960px){.events{grid-template-columns:1fr 1fr}.grid-2{grid-template-columns:1fr}}
+    @media (max-width:640px){.events{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="UMB DermaBeauty Club logo" onerror="this.style.display='none'">
+        <div class="t1">UMB DermaBeauty Club</div>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="events.html" aria-current="page">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Events & Workshops</h1>
+    <p class="lead">Filter events and try the RSVP form (saved to <code>localStorage</code>—no server needed).</p>
+
+    <div class="controls" role="group" aria-label="Event filters">
+      <button class="btn" data-filter="upcoming">Upcoming</button>
+      <button class="btn" data-filter="past">Past</button>
+      <button class="btn" data-filter="all">All</button>
+    </div>
+
+    <div id="event-list" class="events" aria-live="polite"></div>
+
+    <div class="card">
+      <h3 style="margin:0 0 6px;color:#5B21B6">Quick RSVP</h3>
+      <p class="lead" style="font-size:14px;margin:0 0 12px;color:#7a6b9a">Add your name + event. It will appear at right and can be deleted.</p>
+      <div class="grid-2">
+        <form id="rsvp-form" novalidate>
+          <label for="rsvp-name">Full name</label>
+          <input id="rsvp-name" name="name" required placeholder="Your name" />
+
+          <label for="rsvp-event">Event</label>
+          <select id="rsvp-event" name="event" required aria-label="Select event"></select>
+
+          <label for="rsvp-notes">Notes (optional)</label>
+          <textarea id="rsvp-notes" name="notes" rows="3" placeholder="Allergies, access needs, etc."></textarea>
+
+          <button class="btn" type="submit" style="margin-top:10px">Submit RSVP</button>
+          <p id="rsvp-msg" role="status" aria-live="polite" style="margin-top:8px;color:#6b6387"></p>
+        </form>
+
+        <div>
+          <h4 style="margin:0 0 8px;color:#5B21B6">RSVP List</h4>
+          <div id="rsvp-list" class="list" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <p>© <span id="year"></span> UMB DermaBeauty Club · IT240</p>
+      <p>See you at the next workshop ✨</p>
+    </div>
+  </footer>
+
+  <script>
+    const events = [
+      {id:'sun', title:'Sunscreen 101 + Filters', date:'2025-11-05', time:'5:00 PM', location:'Campus Center 3F', tags:['Workshop','Skincare'], desc:'Broad-spectrum, UVA/UVB, SPF myths.'},
+      {id:'shadow', title:'Derm Shadowing: How To', date:'2025-11-18', time:'6:00 PM', location:'Science B-210', tags:['Career'], desc:'Finding opportunities ethically + tips.'},
+      {id:'acne', title:'Acne Routine Lab', date:'2025-10-14', time:'4:00 PM', location:'CC 2A', tags:['Hands-on'], desc:'BPO vs. Salicylic, routine building.'},
+      {id:'atopic', title:'Atopic Dermatitis Talk', date:'2025-09-26', time:'3:30 PM', location:'Online', tags:['Talk'], desc:'Triggers, moisturizers, barrier repair.'}
+    ];
+    const $ = (q)=>document.querySelector(q);
+    const $$ = (q)=>document.querySelectorAll(q);
+    const list = $('#event-list'); const sel = $('#rsvp-event');
+
+    function renderEvents(filter='upcoming'){
+      const today = new Date();
+      let arr = events.slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
+      if(filter==='upcoming') arr = arr.filter(e=> new Date(e.date) >= new Date(today.toDateString()));
+      if(filter==='past') arr = arr.filter(e=> new Date(e.date) < new Date(today.toDateString()));
+      list.innerHTML = '';
+      arr.forEach(e=>{
+        const el = document.createElement('article'); el.className='event';
+        el.innerHTML = `
+          <time datetime="${e.date}">${new Date(e.date).toLocaleDateString()}</time>
+          <h4>${e.title}</h4>
+          <p style="color:#7a6b9a">${e.time} · ${e.location}</p>
+          <p>${e.desc}</p>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">
+            ${e.tags.map(t=>`<span class="badge">${t}</span>`).join('')}
+          </div>`;
+        list.appendChild(el);
+      });
+      sel.innerHTML = '<option value="" disabled selected>Select an event</option>' +
+        events.filter(e=> new Date(e.date) >= new Date())
+              .map(e=>`<option value="${e.id}">${new Date(e.date).toLocaleDateString()} – ${e.title}</option>`).join('');
+    }
+    $$('.btn[data-filter]').forEach(b=> b.addEventListener('click', ()=>renderEvents(b.dataset.filter)));
+    renderEvents('upcoming');
+
+    // RSVP localStorage
+    const load = ()=> JSON.parse(localStorage.getItem('dermaClubRSVP')||'[]');
+    const save = (d)=> localStorage.setItem('dermaClubRSVP', JSON.stringify(d));
+    const listRSVP = $('#rsvp-list'); const msg = $('#rsvp-msg'); const form = $('#rsvp-form');
+
+    function renderRSVPs(){
+      const data = load(); listRSVP.innerHTML = data.length? '' : '<p style="color:#7a6b9a">No RSVPs yet.</p>';
+      data.forEach((row,i)=>{
+        const ev = events.find(e=>e.id===row.eventId);
+        const box = document.createElement('div'); box.className='card';
+        box.innerHTML = `<strong>${row.name}</strong>
+          <p style="color:#7a6b9a;margin:4px 0">${ev? ev.title : 'Event'}${ev? ' – ' + new Date(ev.date).toLocaleDateString():''}</p>
+          ${row.notes? `<p style="margin:6px 0">${row.notes}</p>`:''}
+          <button class="btn" data-del="${i}">Delete</button>`;
+        listRSVP.appendChild(box);
+      });
+    }
+    listRSVP.addEventListener('click', e=>{
+      const i = e.target.getAttribute('data-del');
+      if(i!==null){ const data = load(); data.splice(Number(i),1); save(data); renderRSVPs(); }
+    });
+    form.addEventListener('submit', e=>{
+      e.preventDefault();
+      const f = new FormData(form);
+      const name = (f.get('name')||'').toString().trim();
+      const eventId = f.get('event'); const notes = (f.get('notes')||'').toString().trim();
+      if(!name || !eventId){ msg.textContent='Please enter your name and select an event.'; return; }
+      const data = load(); data.push({name,eventId,notes,ts:Date.now()}); save(data);
+      form.reset(); msg.textContent='Thanks! Your RSVP was saved.'; renderRSVPs();
+    });
+    renderRSVPs();
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

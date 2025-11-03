@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UMB DermaBeauty Club ✨ — About</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* paste the same CSS block from index.html here (theme + layout) */
+    :root{--lav:#E9D8FF;--lav-2:#F6ECFF;--rose:#FFD6EA;--mint:#CFF5EA;--violet:#A78BFA;--plum:#7C3AED;--ink:#2b1f47;--text:#40385a;--card:#FFFFFFEE;--line:#00000012;--shadow:0 8px 30px rgba(124,58,237,.18);--radius:22px}
+    *{box-sizing:border-box} html:focus-within{scroll-behavior:smooth}
+    html,body{margin:0;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,sans-serif;background:
+      radial-gradient(1200px 600px at 0% -10%, #ffe4f5 0%, transparent 60%),
+      radial-gradient(1200px 700px at 100% 0%, #e6f8ff 0%, transparent 60%),
+      linear-gradient(180deg, var(--lav), var(--lav-2));color:#40385a}
+    a{color:#6D28D9;text-decoration:none}.container{width:min(1100px,92%);margin-inline:auto}
+    header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.75);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}.brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:var(--shadow)}
+    .brand .t1{font-family:"Dancing Script",cursive;font-size:28px;color:#5B21B6}
+    .nav ul{display:flex;gap:8px;list-style:none;margin:0;padding:0}.nav a{padding:8px 14px;border-radius:999px;color:#5a5176}
+    .nav a[aria-current="page"], .nav a:hover{background:#f4edff;color:#3f2e7a}
+    main{padding:60px 0}.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    h1{font-size:clamp(30px,4vw,44px);color:#3b2e66;margin:0 0 10px}.cute{font-family:"Dancing Script",cursive;color:#8B5CF6}
+    p.lead{color:#6b6387}
+    .grid-2{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;align-items:start}
+    ul {margin:10px 0 0 18px}
+    footer{padding:28px 0;color:#6b6387;border-top:1px solid var(--line)}
+    @media (max-width:960px){.grid-2{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <img src="logo.png" alt="UMB DermaBeauty Club logo" onerror="this.style.display='none'">
+        <div class="t1">UMB DermaBeauty Club</div>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="resources.html">Resources</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container grid-2">
+      <div>
+        <h1><span class="cute">About</span> DermaBeauty</h1>
+        <p class="lead">Whether you dream of going into esthetics, dermatology, nursing, or becoming a PA—or you just love skincare and self-care—this club is for you! The UMB DermaBeauty Club explores the science and care behind skin health, connecting beauty and medicine. Help us get approved and grow by joining events and sharing our form. We can’t do it without your support! 💚🤍💜</p>
+        <div class="card">
+          <h3 style="margin:0 0 8px;color:#5B21B6">What we do</h3>
+          <ul>
+            <li>Hands-on demos and routine labs (acne care, sunscreen, barrier repair)</li>
+            <li>Journal clubs & guest speakers</li>
+            <li>Shadowing & volunteering tips for pre-health and esthetics pathways</li>
+            <li>Community outreach and wellness collabs on campus</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0;color:#5B21B6">Follow & Join</h3>
+        <p>Instagram: <a target="_blank" rel="noopener" href="https://www.instagram.com/dbumassboston/">@dbumassboston</a></p>
+        <p>Scan the QR on our flyer or check our bio to sign the interest form and get updates on meetings and workshops ✨</p>
+        <img src="logo.png" alt="DermaBeauty round logo" style="max-width:280px;border-radius:50%;margin-top:6px" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <p>© <span id="year"></span> UMB DermaBeauty Club · IT240 Web Fluency</p>
+      <p>Pastel vibes, real science ✨</p>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
